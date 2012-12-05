@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'bundler/setup'
+require 'circonus-api'
+
+api    = Circonus::Api.new
+method = ARGV.shift
+p api.send(method, *ARGV)
