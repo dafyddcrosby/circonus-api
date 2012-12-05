@@ -1,6 +1,7 @@
 require "circonus-api/version"
 require "rest-client"
 require "json"
+require "uri"
 
 module Circonus
   class Api
@@ -54,7 +55,7 @@ module Circonus
 
     def request(method, path, params)
       begin
-        response = @resource[path].send(method, params)
+        response = @resource[URI.escape(path)].send(method, params)
         result = deserialize(response)
       rescue RestClient::Exception => e
         result = deserialize(e.http_body)
