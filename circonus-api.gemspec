@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Circonus::Api::VERSION
   gem.authors       = ["Ben Marini"]
   gem.email         = ["bmarini@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = %q{Ruby client for the Circonus API}
+  gem.summary       = %q{Ruby client for the Circonus API}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($/)
