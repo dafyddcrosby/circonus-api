@@ -1,4 +1,9 @@
 #!/usr/bin/env ruby
+#
+# This script just provides quick and dirty access to the API, not meant to
+# be that useful.
+#
+# Usage: CIRCONUS_APP_NAME=appname CIRCONUS_API_TOKEN=apitoken ./bin/circonus-api list_accounts
 require 'rubygems'
 require 'bundler/setup'
 require 'circonus-api'
