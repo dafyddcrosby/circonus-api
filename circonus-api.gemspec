@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.version       = Circonus::Api::VERSION
   gem.authors       = ["Ben Marini"]
   gem.email         = ["bmarini@gmail.com"]
+  gem.homepage      = "https://github.com/bmarini/circonus-api"
   gem.description   = %q{Ruby client for the Circonus API}
   gem.summary       = %q{Ruby client for the Circonus API}
   gem.homepage      = ""
