@@ -41,7 +41,8 @@ module Circonus
     def data_extraction(options = {})
       check_id = options.fetch(:check_id)
       metric_name = options.fetch(:metric_name)
-      start_time = options.fetch(:start, 1.day.ago).to_i
+      one_day_ago = Time.now - (60 * 60 * 24)
+      start_time = options.fetch(:start, one_day_ago).to_i
       end_time = options.fetch(:end, Time.now).to_i
       type = options.fetch(:type, 'numeric') # can be numeric, text, or histogram
 
