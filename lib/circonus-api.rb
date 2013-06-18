@@ -2,6 +2,7 @@ require "circonus-api/version"
 require "rest-client"
 require "json"
 require "uri"
+require "active_support/all"
 
 module Circonus
   class Api
@@ -37,6 +38,28 @@ module Circonus
     resource "users"
     resource "worksheets"
 
+    def data_extraction(options = {})
+      check_id = options.fetch(:check_id)
+      metric_name = options.fetch(:metric_name)
+      start_time = options.fetch(:start, 1.day.ago).to_i
+      end_time = options.fetch(:end, Time.now).to_i
+      type = options.fetch(:type, 'numeric') # can be numeric, text, or histogram
+
+      params = {
+        type: type,
+        start: start_time,
+        end: end_time,
+      }
+
+      unless type == 'text'
+        period = options.fetch(:period, 300) # in seconds
+        validate_data_extraction_period(period)
+        params[:period] = period
+      end
+
+      get("/data/#{check_id}_#{metric_name}", params: params)
+    end
+
     def get(path, params={})
       request(:get, path, params)
     end
@@ -66,6 +89,15 @@ module Circonus
 
     def deserialize(json_string)
       JSON.parse(json_string)
+    end
+
+    private
+
+    def validate_data_extraction_period(period)
+      acceptable_periods = [300, 1800, 10800, 86400]
+      unless acceptable_periods.include?(period)
+        raise ArgumentError, "Period must be one of #{acceptable_periods.join(', ')} (in seconds)" 
+      end
     end
 
   end

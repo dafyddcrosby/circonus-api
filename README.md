@@ -31,6 +31,17 @@ This gem provides a pretty simple interface to the Circonus API.
     api.update_account(id, json_data)
     api.delete_account(id)
 
+    # There is also a method for the new Data Extraction api (in beta)
+    # See https://login.circonus.com/resources/api/calls#data_extraction
+    api.data_extraction(
+      check_id: 12345,
+      metric_name: 'orders_count',
+      type: 'numeric',                 # Defaults to 'numeric', can also be 'text' or 'histogram'
+      period: 300,                     # In seconds, defaults to 300. Not required for 'text' type
+      start_time: 5.days.ago,          # Defaults to 1.day.ago, #to_i of this value must return a timestamp in seconds
+      end_time: Time.now               # Defaults to Time.now,  #to_i of this value must return a timestamp in seconds
+    )
+
 ## Contributing
 
 1. Fork it
