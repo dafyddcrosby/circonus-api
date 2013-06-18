@@ -2,7 +2,6 @@ require "circonus-api/version"
 require "rest-client"
 require "json"
 require "uri"
-require "active_support/all"
 
 module Circonus
   class Api
