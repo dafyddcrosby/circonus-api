@@ -29,6 +29,7 @@ module Circonus
     resource "accounts"
     resource "annotations"
     resource "brokers"
+    resource "checks"
     resource "check_bundles"
     resource "contact_groups"
     resource "graphs"
